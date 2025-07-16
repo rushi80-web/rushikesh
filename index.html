@@ -1,0 +1,180 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inventory & Billing System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="navbar">
+    <h1>🧾 Inventory & Billing Management</h1>
+    <div class="nav-links">
+      <a href="#product">Products</a>
+      <a href="#inventory">Inventory</a>
+      <a href="#billing">Billing</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- 🟩 Intro Section -->
+    <section class="form-box" style="text-align: center;">
+      <h2>Welcome</h2>
+      <p>This dashboard allows you to manage your inventory and billing efficiently.</p>
+      <p>Use the sections below to add products, track batches, and generate bills.</p>
+    </section>
+
+    <!-- 🟦 Product Section -->
+    <section id="product" class="form-box">
+      <h2>➕ Add New Product</h2>
+      <form action="/add_product" method="POST">
+        <label for="name">📝 Product Name</label>
+        <input type="text" name="name" id="name" placeholder="e.g., Paracetamol Tablet" required>
+
+        <label for="description">📄 Description</label>
+        <input type="text" name="description" id="description" placeholder="e.g., Pain Relief Medicine" required>
+
+        <label for="price">💰 Price (₹)</label>
+        <input type="number" name="price" id="price" step="0.01" placeholder="e.g., 25.00" required>
+
+        <label for="quantity">📦 Quantity</label>
+        <input type="number" name="quantity" id="quantity" placeholder="e.g., 100" required>
+
+        <button type="submit">✅ Add Product</button>
+      </form>
+
+      <h3>📋 Current Product List</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>{}</td>
+            <td>{}</td>
+            <td>{}</td>
+            <td>₹{}</td>
+            <td>{}</td>
+            <td>
+              <a href="/edit/{}" class="edit-btn">Edit</a>
+              <a href="/delete/{}" class="delete-btn">Delete</a>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 🟧 Inventory Section -->
+    <section id="inventory" class="table-box">
+      <h2>📊 Inventory – Batch Wise</h2>
+      <p>Track inventory stock with batch number and expiry dates.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Batch No</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Expiry</th>
+          </tr>
+        </thead>
+        <tbody>
+           
+          <tr>
+            <td>{}</td>
+            <td>{}</td>
+            <td>{}</td>
+            <td>{}</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 🟥 Billing Section -->
+    <section id="billing" class="form-box">
+      <h2>🧾 Generate Customer Bill</h2>
+      <form method="POST" action="/generate_bill">
+         
+        <div class="form-group">
+          <label>{ product.name } ₹{ product.price }</label>
+          <input type="number" name="quantity_{{ product.id }}" placeholder="Qty" min="0">
+        </div>
+        
+        <button type="submit">🧮 Generate Bill</button>
+      </form>
+
+      
+      <div class="table-box">
+        <h3>🧾 Final Bill Summary</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Qty</th>
+              <th>Unit Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td>{}</td>
+              <td>{}</td>
+              <td>₹{}</td>
+              <td>₹{}</td>
+            </tr>
+        
+            <tr>
+              <td colspan="3"><strong>Grand Total</strong></td>
+              <td><strong>₹{ bill.total }</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+     
+    </section>
+
+    <!-- 🟨 System Notes Section -->
+    <section class="form-box">
+      <h2>📝 System Features & Notes</h2>
+      <ul style="line-height: 1.8;">
+        <li>All forms are validated before submission.</li>
+        <li>Billing system calculates product total based on quantity.</li>
+        <li>Inventory includes batch number and expiry for detailed tracking.</li>
+        <li>Data is dynamically rendered using Flask and Jinja templating.</li>
+        <li>Styled with custom responsive CSS for good UI.</li>
+      </ul>
+    </section>
+
+    <!-- 🟪 Developer Note Section -->
+    <section class="form-box">
+      <h2>👨‍💻 Developer Note</h2>
+      <p>This system was built by <strong>Rushikesh Barhate</strong>, an AIML student at Zeal College, Pune. The purpose is to integrate frontend skills (HTML/CSS) with backend logic (Python Flask or Node.js).</p>
+    </section>
+
+  </div>
+    <footer>
+    <div class="footer-content">
+      <p>© 2025 Rushikesh Barhate | AIML Student | Zeal College of Engineering, Pune</p>
+      <p>Email: <a href="mailto:rushikesh@example.com">rushikeshbarhate076@gmail.com.com</a> | Phone: +91-9876543210</p>
+      <p>GitHub: <a href="https://github.com/rushikeshbarhate" target="_blank">rushikeshbarhate</a> | Portfolio: <a href="https://rushikeshbarhate.dev" target="_blank">rushikeshbarhate.dev</a></p>
+      <p>Passionate about AI, Web Development & Data Science,AIML 💻</p>
+    </div>
+  </footer>
+
+
+  <footer>
+    <p>© 2025 Rushikesh AIML | Inventory & Billing System | Built with ❤️ using HTML, CSS, JS & Flask</p>
+  </footer>
+</body>
+</html>
